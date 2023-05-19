@@ -2,7 +2,7 @@ import http from 'http'
 import fs from 'fs'
 
 const server = http.createServer((req, res) => {
-  if (req.method === 'POST' && req.url === '/submit') {
+  if (req.method === 'POST' && req.url === '/b') {
     let data = '';
     req.on('data', chunk => {
       data += chunk;
