@@ -6,22 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Client</title>
   <button id="btn">a</button> 
+  <div id="root"></div>
 </head>
 <body>
   <script>
     const xhr = new XMLHttpRequest();
-    const url = 'http://localhost:3000/a';
+    const url = 'http://localhost:3000/b';
     const data = 'Hello, Server!'; // 전송할 데이터
-
+    const root = document.getElementById('root')
     const button = document.getElementById('btn')
     button.addEventListener('click',()=>{
 
         xhr.open('POST', url, true);
         xhr.setRequestHeader('Content-Type', 'text/plain');
-        
         xhr.onload = function() {
             if (xhr.status === 200) {
                 console.log('Response(XML):', xhr.responseText);
+                root.innerText += xhr.response;
             } else {
                 console.error('에러 발생:', xhr.status);
             }

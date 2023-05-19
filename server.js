@@ -2,6 +2,18 @@ import http from 'http'
 import fs from 'fs'
 
 const server = http.createServer((req, res) => {
+  if (req.method === 'GET' && req.url === '/') {
+    fs.readFile('xml.html',(err,data)=>{
+      if(err){
+        console.log(err)
+      }else{
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+      }
+    })
+   
+    
+  }
   if (req.method === 'POST' && req.url === '/b') {
     let data = '';
     req.on('data', chunk => {
@@ -15,11 +27,12 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end('Data received successfully!');
     });
-  } else {
-    res.statusCode = 404;
-    res.end();
-    
   }
+  //  else {
+  //   res.statusCode = 404;
+  //   res.end();
+    
+  // }
 });
 
 server.listen(3000, () => {
