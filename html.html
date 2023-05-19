@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client</title>
+</head>
+<body>
+  <script>
+    const xhr = new XMLHttpRequest();
+    const url = 'http://localhost:3000/submit';
+    const data = 'Hello, Server!'; // 전송할 데이터
+
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'text/plain');
+
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        console.log('Response(XML):', xhr.responseText);
+      } else {
+        console.error('에러 발생:', xhr.status);
+      }
+    };
+
+    xhr.send(data);
+  </script>
+</body>
+</html>

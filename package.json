@@ -1,0 +1,22 @@
+{
+  "name": "2023-05-19-xmlhttp-prac",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KangJeemin/2023-05-19-xmlhttp-prac.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KangJeemin/2023-05-19-xmlhttp-prac/issues"
+  },
+  "homepage": "https://github.com/KangJeemin/2023-05-19-xmlhttp-prac#readme",
+  "type": "module"
+}
