@@ -7,6 +7,7 @@
   <title>Client</title>
   <button id="btn">a</button> 
   <div id="root"></div>
+  <div id="server"></div>
 </head>
 <body>
   <script>
@@ -15,21 +16,47 @@
     const data = 'Hello, Server!'; // 전송할 데이터
     const root = document.getElementById('root')
     const button = document.getElementById('btn')
-    button.addEventListener('click',()=>{
+    const server = document.getElementById('server')
+    let count = 0
+    setInterval(()=>{
+      root.innerText = ''
+      root.innerText += '클라이언트 시간'
+      root.innerText += new Date()
+    },1000)
+    setInterval(()=>{
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-Type', 'text/plain');
+      xhr.onload = function() {
+          if (xhr.status === 200) {
+              console.log('Response(XML):', xhr.responseText);
+              server.innerText = ''
+              server.innerText += '서버 시간'
+              server.innerText += xhr.response
+          } else {
+              console.error('에러 발생:', xhr.status);
+          }
+      };
+      xhr.send();
+    },1000)
+    // button.addEventListener('click',()=>{
 
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-Type', 'text/plain');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                console.log('Response(XML):', xhr.responseText);
-                root.innerText += xhr.response;
-            } else {
-                console.error('에러 발생:', xhr.status);
-            }
-        };
+    //     xhr.open('POST', url, true);
+    //     xhr.setRequestHeader('Content-Type', 'text/plain');
+    //     xhr.onload = function() {
+    //         if (xhr.status === 200) {
+    //             console.log('Response(XML):', xhr.responseText);
+    //             root.innerText += xhr.response + ': 서버에서 왔음';
+    //             root.innerText += xhr.response + ': 클라이언트에서 왔음';
+    //             root.innerText += new Date();
+
+    //         } else {
+    //             console.error('에러 발생:', xhr.status);
+    //         }
+    //     };
         
-        xhr.send(data);
-    })
+    //     xhr.send(count);
+    //     count ++
+    // })
   </script>
 </body>
 </html>

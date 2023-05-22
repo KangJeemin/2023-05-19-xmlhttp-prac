@@ -1,6 +1,7 @@
 import http from 'http'
 import fs from 'fs'
 
+let countFromServer = 0
 const server = http.createServer((req, res) => {
   if (req.method === 'GET' && req.url === '/') {
     fs.readFile('xml.html',(err,data)=>{
@@ -16,6 +17,7 @@ const server = http.createServer((req, res) => {
   }
   if (req.method === 'POST' && req.url === '/b') {
     let data = '';
+    
     req.on('data', chunk => {
       data += chunk;
     });
@@ -25,8 +27,10 @@ const server = http.createServer((req, res) => {
 
       // 클라이언트로 응답 전송
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('Data received successfully!');
+      res.end(new Date().toString());
+
     });
+    
   }
   //  else {
   //   res.statusCode = 404;
